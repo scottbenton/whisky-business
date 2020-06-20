@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { HomePage } from "./HomePage";
+import { RecipeListPage } from "./RecipeListPage";
 import { RecipePage } from "./RecipePage";
 
 export interface PageConfigEntry {
@@ -21,6 +21,6 @@ export const pageConfig: PageConfig = {
   home: {
     path: "/",
     exact: true,
-    component: (props) => <HomePage {...props} />,
+    component: (props) => <RecipeListPage {...props} />,
   },
 };

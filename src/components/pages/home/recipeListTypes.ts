@@ -1,15 +1,14 @@
 export interface RecipeListItemType {
-  imageUrl: string;
+  id: string;
+  imageUrl?: string;
   name: string;
-  description: string;
-  time: number;
+  description?: string;
+  time?: number;
 }
 
 export interface RecipeListGroupType {
   categoryName: string;
-  recipes: {
-    [key: string]: RecipeListItemType;
-  };
+  recipes: RecipeListItemType[];
 }
 
 export interface RecipeListType {

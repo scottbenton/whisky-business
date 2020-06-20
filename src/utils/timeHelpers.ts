@@ -2,7 +2,7 @@ export function formatCookTime(time: number) {
   let timeString = "";
 
   const hours = Math.floor(time / 60);
-  const minutes = time % 60;
+  const minutes = Math.round(time % 60);
 
   if (hours > 0) {
     timeString += hours + (hours === 1 ? " hour " : " hours ");
