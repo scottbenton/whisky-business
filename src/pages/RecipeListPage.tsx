@@ -1,6 +1,6 @@
 import React from "react";
-import { RecipeGroup } from "components/pages/home/RecipeGroup";
-import { RecipeListType } from "components/pages/home/recipeListTypes";
+import { RecipeGroup } from "components/pages/recipeList/RecipeGroup";
+import { RecipeListType } from "components/pages/recipeList/recipeListTypes";
 
 export const RecipeListPage: React.FC = (props) => {
   const recipes: RecipeListType = require("components/pages/MockRecipeList.json");

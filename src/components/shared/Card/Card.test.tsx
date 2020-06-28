@@ -1,8 +1,6 @@
 import React from "react";
 import { render, cleanup, fireEvent, act } from "@testing-library/react";
 import { Card, CardProps } from "./Card";
-import "@testing-library/jest-dom/extend-expect";
-
 afterEach(cleanup);
 
 describe("Card Tests", () => {
