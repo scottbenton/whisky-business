@@ -84,4 +84,30 @@ describe("TextInput Tests", () => {
 
     expect(getByLabelText(/Test Input*/gi)).toBeInTheDocument();
   });
+
+  test("It shows a password view toggle button on password inputs", () => {
+    const { getByTestId } = setup({ ...DEFAULT_PROPS, type: "password" });
+
+    expect(getByTestId(/toggle-password-show-button/i)).toBeInTheDocument();
+  });
+
+  test("It toggles passwords showing on click", () => {
+    const { getByTestId } = setup({ ...DEFAULT_PROPS, type: "password" });
+    const toggleButton = getByTestId("toggle-password-show-button");
+    const passwordInput = getByTestId("test-input");
+
+    expect(passwordInput.getAttribute("type")).toBe("password");
+
+    act(() => {
+      fireEvent.click(toggleButton);
+    });
+
+    expect(passwordInput.getAttribute("type")).toBe("text");
+
+    act(() => {
+      fireEvent.click(toggleButton);
+    });
+
+    expect(passwordInput.getAttribute("type")).toBe("password");
+  });
 });

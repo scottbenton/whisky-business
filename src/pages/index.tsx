@@ -3,6 +3,7 @@ import { RecipeListPage } from "./RecipeListPage";
 import { RecipePage } from "./RecipePage";
 import { RegisterPage } from "./RegisterPage";
 import { SignInPage } from "./SignInPage";
+import { HomePage } from "./HomePage";
 
 export interface PageConfigEntry {
   path: string;
@@ -16,12 +17,12 @@ export interface PageConfig {
 
 export const pageConfig: PageConfig = {
   recipe: {
-    path: "/recipe/:recipeID",
+    path: "/recipes/:recipeID",
     exact: true,
     component: (props) => <RecipePage {...props} />,
   },
-  home: {
-    path: "/",
+  recipeList: {
+    path: "/recipes",
     exact: true,
     component: (props) => <RecipeListPage {...props} />,
   },
@@ -34,5 +35,10 @@ export const pageConfig: PageConfig = {
     path: "/sign-in",
     exact: true,
     component: (props) => <SignInPage {...props} />,
+  },
+  home: {
+    path: "/",
+    exact: true,
+    component: (props) => <HomePage {...props} />,
   },
 };

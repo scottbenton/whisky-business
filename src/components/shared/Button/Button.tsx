@@ -30,7 +30,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
   };
 
   let classes = clsx(
-    "px-4 py-2 rounded-full tracking-wide focus:outline-none font-semibold uppercase text-sm box-border border-2 border-transparent focus:border-green-900",
+    "px-4 py-2 rounded-full tracking-wider focus:outline-none font-bold uppercase text-sm box-border border-2 border-transparent focus:border-green-900",
     className
   );
   let containerClasses = clsx("m-1 rounded-full flex", containerClassName);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { AuthenticationContext } from "./AuthenticationContext";
 import {
   CognitoUser,
@@ -11,7 +11,9 @@ import { SignInForm } from "classes/fields/SignInForm";
 export const AuthenticationProvider: React.FC = (props) => {
   const { children } = props;
 
-  const [user, setUser] = React.useState<CognitoUser | null>(getCurrentUser());
+  const [user, setUser] = React.useState<CognitoUser | null>(() =>
+    getCurrentUser()
+  );
 
   const registerNewUser = (userFields: RegistrationForm) => {
     return new Promise((resolve, reject) => {

@@ -5,15 +5,17 @@ import Ripple from "react-ripples";
 export interface InputAdornmentProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
   id: string;
+  side?: "start" | "end";
 }
 
 export const InputAdornment: React.FC<InputAdornmentProps> = (props) => {
-  const { children, className, id, ...buttonProps } = props;
+  const { children, className, id, side = "end", ...buttonProps } = props;
   const { onClick } = props;
 
   const classes = clsx(
     className,
-    "px-4 h-full bg-gray-200 focus:outline-none text-gray-700 fill-current"
+    "px-3 h-full bg-gray-200 focus:outline-none text-gray-700 fill-current",
+    side === "start" ? "pl-4" : "pr-4"
   );
 
   const descriptiveId = id + (onClick ? "-button" : "-container");
@@ -33,6 +35,10 @@ export const InputAdornment: React.FC<InputAdornmentProps> = (props) => {
       </Ripple>
     );
   } else {
-    return <div className={classes}>{children}</div>;
+    return (
+      <div data-testid={descriptiveId} id={descriptiveId} className={classes}>
+        {children}
+      </div>
+    );
   }
 };

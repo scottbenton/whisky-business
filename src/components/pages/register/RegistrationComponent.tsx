@@ -9,6 +9,8 @@ import { TextFormField } from "components/shared/TextInput/TextFormField";
 import { ISignUpResult } from "amazon-cognito-identity-js";
 import { Alert } from "components/shared/Alert";
 import { useAuthentication } from "providers/AuthenticationProvider";
+import { useHistory } from "react-router-dom";
+import { pageConfig } from "pages";
 
 const handleValidate = async (values: IRegistrationForm) => {
   let form = new RegistrationForm(values);
@@ -17,11 +19,11 @@ const handleValidate = async (values: IRegistrationForm) => {
 
 export const RegistrationComponent: React.FC = (props) => {
   const { register } = useAuthentication() || {};
+  const history = useHistory();
 
   const [error, setError] = React.useState<Error | undefined>();
 
   const onSubmit = (values: RegistrationForm) => {
-    console.debug(JSON.stringify(values));
     if (register) {
       register(values)
         .then((result: ISignUpResult) => {
@@ -32,9 +34,7 @@ export const RegistrationComponent: React.FC = (props) => {
   };
 
   const handleCancel = () => {
-    let error = new Error("This is a description of how you fucked up");
-    error.name = "I'm an error";
-    setError(error);
+    history.push(pageConfig.home.path);
   };
 
   return (
@@ -46,7 +46,11 @@ export const RegistrationComponent: React.FC = (props) => {
         onSubmit={onSubmit}
         validate={handleValidate}
         render={({ handleSubmit }) => (
-          <form onSubmit={handleSubmit} autoComplete={"no"}>
+          <form
+            onSubmit={handleSubmit}
+            autoComplete={"no"}
+            data-testid={"registration-form"}
+          >
             <div className={"flex"}>
               <TextFormField
                 fieldName={"firstName"}
@@ -92,7 +96,7 @@ export const RegistrationComponent: React.FC = (props) => {
               <Button id={"cancel"} type={"button"} onClick={handleCancel}>
                 Cancel
               </Button>
-              <Button id={"submit"} type={"submit"} variant={"primary"}>
+              <Button id={"create-account"} type={"submit"} variant={"primary"}>
                 Create Account
               </Button>
             </div>

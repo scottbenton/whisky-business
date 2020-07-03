@@ -5,32 +5,34 @@ import { Alert } from "components/shared/Alert";
 import { TextFormField } from "components/shared/TextInput/TextFormField";
 import { Button } from "components/shared/Button";
 import { SignInForm, ISignInForm } from "classes/fields/SignInForm";
+import { useHistory } from "react-router-dom";
+import { pageConfig } from "pages";
+
+const validate = async (values: ISignInForm) => {
+  let form = new SignInForm(values);
+  return form.validate();
+};
 
 export const SignInComponent: React.FC = () => {
   const { signIn } = useAuthentication() || {};
+  const history = useHistory();
 
   const [error, setError] = React.useState<Error | undefined>();
 
-  const onSubmit = (values: ISignInForm) => {
-    console.debug(JSON.stringify(values));
+  const onSubmit = async (values: SignInForm) => {
     signIn &&
       signIn(values)
         .then(() => {
           console.debug("Sign in worked");
         })
         .catch((err: Error) => {
-          console.error("HEY I'M AN ERROR");
           setError(err);
         });
   };
 
   const handleCancel = () => {
-    let error = new Error("This is a description of how you fucked up");
-    error.name = "I'm an error";
-    setError(error);
+    history.push(pageConfig.home.path);
   };
-
-  console.debug(error);
 
   return (
     <>
@@ -39,6 +41,7 @@ export const SignInComponent: React.FC = () => {
       )}
       <Form
         onSubmit={onSubmit}
+        validate={validate}
         render={({ handleSubmit }) => (
           <form onSubmit={handleSubmit} autoComplete={"no"}>
             <TextFormField
@@ -59,7 +62,7 @@ export const SignInComponent: React.FC = () => {
               <Button id={"cancel"} type={"button"} onClick={handleCancel}>
                 Cancel
               </Button>
-              <Button id={"submit"} type={"submit"} variant={"primary"}>
+              <Button id={"sign-in"} type={"submit"} variant={"primary"}>
                 Sign In
               </Button>
             </div>

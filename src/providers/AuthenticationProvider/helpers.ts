@@ -55,7 +55,7 @@ export function signUserIn(userFields: SignInForm): Promise<CognitoUser> {
     });
 
     const userData = {
-      Username: "username",
+      Username: email,
       Pool: userPool,
     };
 

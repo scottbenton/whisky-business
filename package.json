@@ -19,6 +19,8 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "react-zondicons": "^1.1.9",
+    "typeface-montserrat": "0.0.75",
+    "typeface-yellowtail": "0.0.72",
     "typescript": "^3.7.5"
   },
   "scripts": {
@@ -26,7 +28,7 @@
     "watch:css": "postcss src/styles/tailwind.css -o src/styles/index.css -w",
     "start": "npm run watch:css & react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --silent",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

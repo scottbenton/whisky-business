@@ -263,7 +263,9 @@ module.exports = {
       default: "1",
     },
     fontFamily: {
+      title: ["Yellowtail", "serif"],
       sans: [
+        "Montserrat",
         "system-ui",
         "-apple-system",
         "BlinkMacSystemFont",
