@@ -1,5 +1,5 @@
 import React from "react";
-import { useAuthentication } from "providers/AuthenticationProvider";
+import { useAuth } from "providers/AuthProvider";
 import { Form } from "react-final-form";
 import { Alert } from "components/shared/Alert";
 import { TextFormField } from "components/shared/TextInput/TextFormField";
@@ -14,20 +14,21 @@ const validate = async (values: ISignInForm) => {
 };
 
 export const SignInComponent: React.FC = () => {
-  const { signIn } = useAuthentication() || {};
+  const { signIn } = useAuth();
   const history = useHistory();
 
   const [error, setError] = React.useState<Error | undefined>();
 
   const onSubmit = async (values: SignInForm) => {
-    signIn &&
-      signIn(values)
-        .then(() => {
-          console.debug("Sign in worked");
-        })
-        .catch((err: Error) => {
-          setError(err);
-        });
+    setError(undefined);
+    signIn(values)
+      .then(() => {
+        console.debug("Sign in worked");
+        history.push(pageConfig.recipeList.path);
+      })
+      .catch((err: Error) => {
+        setError(err);
+      });
   };
 
   const handleCancel = () => {

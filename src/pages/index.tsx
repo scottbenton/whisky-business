@@ -1,9 +1,15 @@
 import React, { FunctionComponent } from "react";
-import { RecipeListPage } from "./RecipeListPage";
-import { RecipePage } from "./RecipePage";
-import { RegisterPage } from "./RegisterPage";
-import { SignInPage } from "./SignInPage";
-import { HomePage } from "./HomePage";
+const RecipeListPage = React.lazy(() => import("./RecipeListPage"));
+const RecipePage = React.lazy(() => import("./RecipePage"));
+const RegisterPage = React.lazy(() => import("./RegisterPage"));
+const SignInPage = React.lazy(() => import("./SignInPage"));
+const HomePage = React.lazy(() => import("./HomePage"));
+
+// import { RecipeListPage } from "./RecipeListPage";
+// import { RecipePage } from "./RecipePage";
+// import { RegisterPage } from "./RegisterPage";
+// import { SignInPage } from "./SignInPage";
+// import { HomePage } from "./HomePage";
 
 export interface PageConfigEntry {
   path: string;

@@ -6,7 +6,7 @@ import { Button } from "components/shared/Button";
 import { useHistory } from "react-router-dom";
 import { pageConfig } from "pages";
 
-export const SignInPage: React.FC = (props) => {
+const SignInPage: React.FC = (props) => {
   const history = useHistory();
 
   const handleCreateClick = () => {
@@ -15,7 +15,7 @@ export const SignInPage: React.FC = (props) => {
 
   return (
     <div className={"flex flex-col flex-grow w-full justify-center px-2"}>
-      <Card className={"max-w-lg mx-auto w-full shadow-xl"}>
+      <Card className={"max-w-lg mx-auto w-full shadow-xl"} topBorder>
         <div className={"flex items-center px-6 py-4"}>
           <UserSolidCircle
             className={"fill-current text-green-500"}
@@ -29,7 +29,7 @@ export const SignInPage: React.FC = (props) => {
           <SignInComponent />
         </div>
         <hr className={"mx-12"} />
-        <div className={"px-6 py-4 flex justify-center items-center"}>
+        <div className={"px-6 py-2 flex justify-center items-center"}>
           <span>Need an account?</span>
           <Button id={"create-account-link"} onClick={handleCreateClick}>
             Create Account
@@ -39,3 +39,5 @@ export const SignInPage: React.FC = (props) => {
     </div>
   );
 };
+
+export default SignInPage;

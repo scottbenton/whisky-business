@@ -1,13 +1,18 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { BrowserRouter } from "react-router-dom";
-import { AuthenticationProvider } from "./AuthenticationProvider";
+// Setup AWS Amplify
+import { AuthProvider } from "./AuthProvider";
 
-export const AppProviders: React.FC = (props) => {
+const AppProviders: React.FC = (props) => {
   const { children } = props;
 
   return (
-    <AuthenticationProvider>
-      <BrowserRouter>{children}</BrowserRouter>
-    </AuthenticationProvider>
+    <AuthProvider>
+      <Suspense fallback={() => <span>Loading...</span>}>
+        <BrowserRouter>{children}</BrowserRouter>
+      </Suspense>
+    </AuthProvider>
   );
 };
+
+export default AppProviders;

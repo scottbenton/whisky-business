@@ -2,15 +2,15 @@ import React from "react";
 import { render, cleanup, fireEvent, act, wait } from "@testing-library/react";
 import { RegistrationComponent } from "./RegistrationComponent";
 
-jest.mock("providers/AuthenticationProvider", () => ({
-  useAuthentication: jest.fn(),
+jest.mock("providers/AuthProvider", () => ({
+  useAuth: jest.fn(),
 }));
-import { useAuthentication } from "providers/AuthenticationProvider";
-const register = jest.fn();
-(useAuthentication as jest.Mock).mockImplementation(() => ({
-  register: register,
+import { useAuth } from "providers/AuthProvider";
+const signUp = jest.fn();
+(useAuth as jest.Mock).mockImplementation(() => ({
+  signUp: signUp,
 }));
-register.mockResolvedValue({});
+signUp.mockResolvedValue({});
 
 jest.mock("react-router-dom", () => ({ useHistory: jest.fn() }));
 import { useHistory } from "react-router-dom";
@@ -219,7 +219,7 @@ describe("TextInput Tests", () => {
       fireEvent.click(submitButton);
     });
 
-    expect(register).not.toHaveBeenCalled();
+    expect(signUp).not.toHaveBeenCalled();
   });
 
   test("Hitting create account with all the fields filled out calls register", async () => {
@@ -253,8 +253,8 @@ describe("TextInput Tests", () => {
     });
     await wait(
       () => {
-        expect(register).toHaveBeenCalledTimes(1);
-        expect(register).toHaveBeenCalledWith(dto);
+        expect(signUp).toHaveBeenCalledTimes(1);
+        expect(signUp).toHaveBeenCalledWith(dto);
       },
       { timeout: 50 }
     );

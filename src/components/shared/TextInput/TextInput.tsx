@@ -69,7 +69,7 @@ export const TextInput: React.FC<TextInputProps> = (props) => {
   };
 
   return (
-    <div className={clsx("flex flex-col w-full pt-2 pb-2", className)}>
+    <div className={clsx("flex flex-col w-full py-3", className)}>
       <label
         className={clsx(
           "pl-1 pb-1 text-sm font-bold",
@@ -95,7 +95,7 @@ export const TextInput: React.FC<TextInputProps> = (props) => {
           {startAdornment}
           <input
             className={clsx(
-              "w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
+              "w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none "
             )}
             data-testid={descriptiveID}
             id={descriptiveID}

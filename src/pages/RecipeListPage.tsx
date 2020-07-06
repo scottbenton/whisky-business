@@ -2,7 +2,7 @@ import React from "react";
 import { RecipeGroup } from "components/pages/recipeList/RecipeGroup";
 import { RecipeListType } from "components/pages/recipeList/recipeListTypes";
 
-export const RecipeListPage: React.FC = (props) => {
+const RecipeListPage: React.FC = (props) => {
   const recipes: RecipeListType = require("components/pages/MockRecipeList.json");
 
   return (
@@ -18,3 +18,5 @@ export const RecipeListPage: React.FC = (props) => {
     </>
   );
 };
+
+export default RecipeListPage;

@@ -6,31 +6,38 @@ import {
   IRegistrationForm,
 } from "classes/fields/RegistrationFields";
 import { TextFormField } from "components/shared/TextInput/TextFormField";
-import { ISignUpResult } from "amazon-cognito-identity-js";
 import { Alert } from "components/shared/Alert";
-import { useAuthentication } from "providers/AuthenticationProvider";
+import { useAuth } from "providers/AuthProvider";
 import { useHistory } from "react-router-dom";
 import { pageConfig } from "pages";
+import { SignUpAttributes } from "providers/AuthProvider/authFunctions";
 
 const handleValidate = async (values: IRegistrationForm) => {
   let form = new RegistrationForm(values);
   return form.validate();
 };
 
-export const RegistrationComponent: React.FC = (props) => {
-  const { register } = useAuthentication() || {};
+export interface RegistrationComponentProps {
+  setEmail: (email: string) => void;
+}
+
+export const RegistrationComponent: React.FC<RegistrationComponentProps> = (
+  props
+) => {
+  const { setEmail } = props;
+
+  const { signUp } = useAuth();
   const history = useHistory();
 
   const [error, setError] = React.useState<Error | undefined>();
 
   const onSubmit = (values: RegistrationForm) => {
-    if (register) {
-      register(values)
-        .then((result: ISignUpResult) => {
-          alert("Success!");
-        })
-        .catch((err: Error) => setError(err));
-    }
+    setError(undefined);
+    signUp(values)
+      .then((result: SignUpAttributes) => {
+        setEmail(result.user.getUsername());
+      })
+      .catch((err: Error) => setError(err));
   };
 
   const handleCancel = () => {

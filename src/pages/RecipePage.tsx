@@ -1,5 +1,7 @@
 import React from "react";
 
-export const RecipePage: React.FC = (props) => {
+const RecipePage: React.FC = (props) => {
   return <>Recipe</>;
 };
+
+export default RecipePage;

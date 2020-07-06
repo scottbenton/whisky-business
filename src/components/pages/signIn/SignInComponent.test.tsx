@@ -2,12 +2,12 @@ import React from "react";
 import { render, cleanup, fireEvent, act, wait } from "@testing-library/react";
 import { SignInComponent } from "./SignInComponent";
 
-jest.mock("providers/AuthenticationProvider", () => ({
-  useAuthentication: jest.fn(),
+jest.mock("providers/AuthProvider", () => ({
+  useAuth: jest.fn(),
 }));
-import { useAuthentication } from "providers/AuthenticationProvider";
+import { useAuth } from "providers/AuthProvider";
 const signIn = jest.fn();
-(useAuthentication as jest.Mock).mockImplementation(() => ({
+(useAuth as jest.Mock).mockImplementation(() => ({
   signIn: signIn,
 }));
 signIn.mockResolvedValue({});
