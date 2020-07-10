@@ -25,6 +25,7 @@ export const Card: React.FC<CardProps> = (props) => {
 
   const handleClick = (evt: React.MouseEvent<HTMLElement, MouseEvent>) => {
     evt.preventDefault();
+    evt.stopPropagation();
     evt.currentTarget.blur();
     typeof onClick === "function" && onClick();
   };

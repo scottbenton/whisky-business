@@ -5,7 +5,7 @@ import App from "components/App";
 import * as serviceWorker from "./serviceWorker";
 import AppProviders from "providers/AppProviders";
 
-import "typeface-yellowtail";
+import "typeface-dosis";
 import "typeface-montserrat";
 
 import Amplify from "aws-amplify";

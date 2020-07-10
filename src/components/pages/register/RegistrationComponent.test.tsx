@@ -38,7 +38,7 @@ afterEach(cleanup);
 
 describe("TextInput Tests", () => {
   const setup = () => {
-    return render(<RegistrationComponent />);
+    return render(<RegistrationComponent setEmail={() => {}} />);
   };
 
   test("It has an input for first name", () => {

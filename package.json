@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@aws-amplify/ui-react": "^0.2.9",
+    "@popperjs/core": "^2.4.4",
     "@types/jest": "^24.9.1",
     "@types/node": "^12.12.47",
     "@types/react": "^16.9.36",
@@ -15,12 +16,14 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-final-form": "^6.5.0",
+    "react-popper": "^2.2.3",
     "react-ripples": "^2.2.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
+    "react-spring": "^8.0.27",
     "react-zondicons": "^1.1.9",
+    "typeface-dosis": "^1.1.4",
     "typeface-montserrat": "0.0.75",
-    "typeface-yellowtail": "0.0.72",
     "typescript": "^3.7.5"
   },
   "scripts": {

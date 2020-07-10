@@ -1,6 +1,5 @@
 import React, { Suspense } from "react";
 import { BrowserRouter } from "react-router-dom";
-// Setup AWS Amplify
 import { AuthProvider } from "./AuthProvider";
 
 const AppProviders: React.FC = (props) => {
@@ -8,7 +7,7 @@ const AppProviders: React.FC = (props) => {
 
   return (
     <AuthProvider>
-      <Suspense fallback={() => <span>Loading...</span>}>
+      <Suspense fallback={<> </>}>
         <BrowserRouter>{children}</BrowserRouter>
       </Suspense>
     </AuthProvider>

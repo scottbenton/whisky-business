@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from "react";
+import { SettingsPage } from "./SettingsPage";
 const RecipeListPage = React.lazy(() => import("./RecipeListPage"));
 const RecipePage = React.lazy(() => import("./RecipePage"));
 const RegisterPage = React.lazy(() => import("./RegisterPage"));
@@ -46,5 +47,10 @@ export const pageConfig: PageConfig = {
     path: "/",
     exact: true,
     component: (props) => <HomePage {...props} />,
+  },
+  settings: {
+    path: "/settings",
+    exact: true,
+    component: (props) => <SettingsPage {...props} />,
   },
 };

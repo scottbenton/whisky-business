@@ -18,6 +18,16 @@ module.exports = {
       black: "#000",
       white: "#fff",
 
+      smoke: {
+        darkest: "rgba(0, 0, 0, 0.9)",
+        darker: "rgba(0, 0, 0, 0.75)",
+        dark: "rgba(0, 0, 0, 0.6)",
+        default: "rgba(0, 0, 0, 0.5)",
+        light: "rgba(0, 0, 0, 0.4)",
+        light: "rgba(0, 0, 0, 0.25)",
+        lightest: "rgba(0, 0, 0, 0.1)",
+      },
+
       gray: {
         100: "#f7fafc",
         200: "#edf2f7",
@@ -263,7 +273,7 @@ module.exports = {
       default: "1",
     },
     fontFamily: {
-      title: ["Yellowtail", "serif"],
+      title: ["dosis", "serif"],
       sans: [
         "Montserrat",
         "system-ui",

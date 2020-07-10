@@ -2,6 +2,8 @@ import { Auth } from "aws-amplify";
 import { RegistrationForm } from "classes/fields/RegistrationFields";
 import { ISignUpResult, CognitoUser } from "amazon-cognito-identity-js";
 import { SignInForm } from "classes/fields/SignInForm";
+import { PasswordFields } from "classes/fields/PasswordFields";
+import { UserAttributeFields } from "classes/fields/UserAttributeFields";
 
 export interface SignUpAttributes {
   user: CognitoUser;
@@ -60,5 +62,34 @@ export function signOut(): Promise<string> {
     Auth.signOut()
       .then(() => resolve("Success"))
       .catch((e) => reject(e));
+  });
+}
+
+export function changePassword(fields: PasswordFields): Promise<string> {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const user = await Auth.currentAuthenticatedUser();
+      await Auth.changePassword(user, fields.oldPassword, fields.newPassword);
+      resolve("Success");
+    } catch (e) {
+      reject(e);
+    }
+  });
+}
+
+export function updateAttributes(fields: UserAttributeFields): Promise<string> {
+  const { firstName, lastName } = fields;
+  return new Promise(async (resolve, reject) => {
+    try {
+      const user = await Auth.currentAuthenticatedUser();
+      await Auth.updateUserAttributes(user, {
+        name: firstName + " " + lastName,
+        "custom:firstName": firstName,
+        "custom:lastName": lastName,
+      });
+      resolve("Success");
+    } catch (e) {
+      reject(e);
+    }
   });
 }

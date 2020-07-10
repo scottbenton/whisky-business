@@ -1,3 +1,5 @@
+import { passwordValidator } from "utils/validatorHelpers";
+
 export interface IRegistrationForm {
   firstName: string;
   lastName: string;
@@ -61,23 +63,7 @@ export class RegistrationForm implements IRegistrationForm {
   }
 
   validatePassword() {
-    if (!this.password) {
-      return "Password is required";
-    }
-
-    const numberRegex = /(?=.*\d)/;
-    const lowerCaseRegex = /(?=.*[a-z])/;
-    const upperCaseRegex = /(?=.*[A-Z])/;
-
-    if (this.password.length < 8) {
-      return "Password must be at least 8 characters";
-    } else if (!lowerCaseRegex.test(this.password)) {
-      return "Password must have at least one lowercase letter";
-    } else if (!upperCaseRegex.test(this.password)) {
-      return "Password must have at least one uppercase letter";
-    } else if (!numberRegex.test(this.password)) {
-      return "Password must have at least one number";
-    }
+    return passwordValidator(this.password);
   }
 
   validateConfirmPassword() {
