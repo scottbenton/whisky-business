@@ -3,7 +3,14 @@ import ReactDOM from "react-dom";
 import "./styles/index.css";
 import App from "components/App";
 import * as serviceWorker from "./serviceWorker";
-import { AppProviders } from "providers/AppProviders";
+import AppProviders from "providers/AppProviders";
+
+import "typeface-dosis";
+import "typeface-montserrat";
+
+import Amplify from "aws-amplify";
+import aws_exports from "aws-exports";
+Amplify.Auth.configure(aws_exports);
 
 ReactDOM.render(
   <React.StrictMode>

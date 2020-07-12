@@ -1,8 +1,17 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { BrowserRouter } from "react-router-dom";
+import { AuthProvider } from "./AuthProvider";
 
-export const AppProviders: React.FC = (props) => {
+const AppProviders: React.FC = (props) => {
   const { children } = props;
 
-  return <BrowserRouter>{children}</BrowserRouter>;
+  return (
+    <AuthProvider>
+      <Suspense fallback={<> </>}>
+        <BrowserRouter>{children}</BrowserRouter>
+      </Suspense>
+    </AuthProvider>
+  );
 };
+
+export default AppProviders;

@@ -7,6 +7,7 @@ export interface CardProps {
   className?: string;
   component?: React.ElementType<React.HTMLAttributes<HTMLElement>>;
   tabIndex?: number;
+  topBorder?: boolean;
   onClick?: () => void;
   "data-testid"?: string;
 }
@@ -18,11 +19,13 @@ export const Card: React.FC<CardProps> = (props) => {
     component: Component = DEFAULT_ELEMENT,
     tabIndex,
     onClick,
+    topBorder,
     "data-testid": testId,
   } = props;
 
   const handleClick = (evt: React.MouseEvent<HTMLElement, MouseEvent>) => {
     evt.preventDefault();
+    evt.stopPropagation();
     evt.currentTarget.blur();
     typeof onClick === "function" && onClick();
   };
@@ -31,6 +34,7 @@ export const Card: React.FC<CardProps> = (props) => {
     <Component
       className={clsx(
         "bg-white text-gray-900 shadow-md rounded-lg overflow-hidden",
+        topBorder && " border-t-4 border-primary-light",
         className
       )}
       tabIndex={tabIndex}

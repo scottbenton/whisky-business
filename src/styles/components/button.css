@@ -1,0 +1,86 @@
+.btn-container {
+  @apply rounded-lg;
+}
+.btn-container-contained {
+  @apply shadow-md;
+}
+.btn-container-contained:hover {
+  @apply shadow-lg;
+}
+
+.btn {
+  @apply box-border flex items-center px-4 py-2 overflow-hidden text-sm font-bold tracking-wider uppercase border-2 border-transparent rounded-lg;
+}
+
+.btn:focus {
+  @apply outline-none;
+}
+
+.btn-primary-contained {
+  @apply bg-primary-lighter text-primary-darker;
+}
+.btn-primary-contained:hover {
+  @apply bg-primary-light;
+}
+.btn-primary-contained:focus {
+  @apply border-primary-darkest;
+}
+
+.btn-default-contained {
+  @apply text-gray-700 bg-gray-200 shadow-md;
+}
+.btn-default-contained:hover {
+  @apply bg-gray-300 shadow-lg;
+}
+.btn-default-contained:focus {
+  @apply border-gray-700;
+}
+
+.btn-contained-disabled {
+  @apply text-gray-600 bg-gray-400;
+}
+
+.btn-primary-outlined {
+  @apply border-primary text-primary-dark;
+}
+.btn-primary-outlined:hover {
+  @apply bg-primary-lightest;
+}
+.btn-primary-outlined:focus {
+  @apply border-primary-darkest;
+}
+
+.btn-default-outlined {
+  @apply text-gray-700 border-gray-500;
+}
+.btn-default-outlined:hover {
+  @apply bg-gray-100;
+}
+.btn-default-outlined:focus {
+  @apply border-gray-900;
+}
+
+.btn-outlined-disabled {
+  @apply text-gray-500 border-gray-500;
+}
+
+.btn-primary-text {
+  @apply text-primary-dark;
+}
+.btn-primary-text:hover {
+  @apply bg-primary-lightest;
+}
+.btn-primary-text:focus {
+  @apply border-primary-darkest;
+}
+
+.btn-default-text:hover {
+  @apply bg-smoke-lightest;
+}
+.btn-default-text:focus {
+  @apply border-current;
+}
+
+.btn-text-disabled {
+  @apply text-gray-500;
+}
