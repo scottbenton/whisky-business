@@ -3,7 +3,6 @@ import { Switch, Route } from "react-router-dom";
 import { pageConfig } from "pages";
 import { NavBar } from "./shared/navigation/NavBar";
 import { Content } from "./shared/navigation/Content";
-import { Footer } from "./shared/navigation/Footer";
 
 function App() {
   return (
@@ -24,7 +23,6 @@ function App() {
           })}
         </Switch>
       </Content>
-      <Footer />
     </>
   );
 }

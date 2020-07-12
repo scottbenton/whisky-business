@@ -11,6 +11,8 @@ import { FormSection } from "components/shared/FormSection";
 import { Dialog } from "components/shared/Dialog";
 import { IPasswordFields, PasswordFields } from "classes/fields/PasswordFields";
 import { Alert } from "components/shared/Alert";
+import { useHistory } from "react-router-dom";
+import { pageConfig } from "pages";
 
 const handleAttributeValidate = async (fields: IUserAttributeFields) => {
   const attributes = new UserAttributeFields(fields);
@@ -22,7 +24,9 @@ const handlePasswordChangeValidate = async (fields: IPasswordFields) => {
 };
 
 export const Settings: React.FC = (props) => {
-  const { user, updatePassword, updateAttributes } = useAuth();
+  const { user, updatePassword, updateAttributes, signOut } = useAuth();
+  const history = useHistory();
+
   const [changePassOpen, setChangePassOpen] = React.useState<boolean>(false);
   const [changePasswordErrors, setChangePasswordErrors] = React.useState<
     Error | undefined
@@ -46,6 +50,12 @@ export const Settings: React.FC = (props) => {
       .catch((e) => {
         setChangePasswordErrors(e);
       });
+  };
+
+  const handleSignOut = () => {
+    signOut().then(() => {
+      history.push(pageConfig.home.path);
+    });
   };
 
   return (
@@ -125,6 +135,14 @@ export const Settings: React.FC = (props) => {
               Change Password
             </Button>
           </div>
+          <Button
+            id={"sign-out"}
+            variant={"outlined"}
+            onClick={() => handleSignOut()}
+            className={"mt-4"}
+          >
+            Sign Out
+          </Button>
         </>
       </FormSection>
       <FormSection title={"Profile"} description={"A bit about yourself!"}>

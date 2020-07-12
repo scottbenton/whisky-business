@@ -1,9 +1,6 @@
 import React from "react";
-import { Button } from "components/shared/Button";
-import { useAuth } from "providers/AuthProvider";
 
 export const Footer: React.FC = (props) => {
-  const { user, signOut } = useAuth();
   return (
     <div className={"px-4 py-2 bg-white"}>
       <div
@@ -20,11 +17,6 @@ export const Footer: React.FC = (props) => {
             Scott Benton
           </a>
         </span>
-        {user && (
-          <Button id={"log-out"} variant={"text"} onClick={() => signOut()}>
-            Log Out
-          </Button>
-        )}
       </div>
     </div>
   );
