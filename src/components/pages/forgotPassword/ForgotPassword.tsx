@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   ForgotPasswordFields,
   IForgotPasswordFields,
@@ -23,13 +23,19 @@ const validate = async (fields: IForgotPasswordFields) => {
 };
 
 export const ForgotPassword: React.FC = () => {
-  const { forgotPassword, forgotPasswordSubmit } = useAuth();
+  const { forgotPassword, forgotPasswordSubmit, user } = useAuth();
   const history = useHistory();
 
   const [passwordFields, setPasswordFields] = React.useState<
     ForgotPasswordFields | undefined
   >();
   const [error, setError] = React.useState<Error | undefined>();
+
+  useEffect(() => {
+    if (user) {
+      history.push(pageConfig.recipeList.path);
+    }
+  }, [user, history]);
 
   const handleEmailAdd = async (fields: { email: string }) => {
     setError(undefined);

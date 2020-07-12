@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button } from "components/shared/Button";
 import { Form } from "react-final-form";
 import {
@@ -25,10 +25,16 @@ export const RegistrationComponent: React.FC<RegistrationComponentProps> = (
 ) => {
   const { setRegistrationFields } = props;
 
-  const { signUp } = useAuth();
+  const { signUp, user } = useAuth();
   const history = useHistory();
 
   const [error, setError] = React.useState<Error | undefined>();
+
+  useEffect(() => {
+    if (user) {
+      history.push(pageConfig.recipeList.path);
+    }
+  }, [user, history]);
 
   const onSubmit = async (values: IRegistrationForm) => {
     const formValues = new RegistrationForm(values);
