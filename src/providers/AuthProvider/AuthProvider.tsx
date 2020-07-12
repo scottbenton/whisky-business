@@ -14,6 +14,8 @@ export const AuthProvider: React.FC = (props) => {
         const user = await Auth.currentAuthenticatedUser();
         if (user) {
           setUser(cognitoUserToUserDTO(user));
+        } else {
+          setUser(undefined);
         }
       } catch (e) {
         setUser(undefined);

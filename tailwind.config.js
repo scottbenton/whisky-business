@@ -24,9 +24,31 @@ module.exports = {
         dark: "rgba(0, 0, 0, 0.6)",
         default: "rgba(0, 0, 0, 0.5)",
         light: "rgba(0, 0, 0, 0.4)",
-        light: "rgba(0, 0, 0, 0.25)",
+        lighter: "rgba(0, 0, 0, 0.25)",
         lightest: "rgba(0, 0, 0, 0.1)",
       },
+
+      // Normal primary color
+      primary: {
+        darkest: "#22543d", // 900
+        darker: "#276749", // 800
+        dark: "#2f855a", // 700
+        default: "#48bb78", // 500
+        light: "#68d391", // 400
+        lighter: "#9ae6b4", // 300
+        lightest: "#c6f6d5", // 200
+      },
+
+      // Gray primary color for contast checking
+      // primary: {
+      //   darkest: "#1a202c", // 900
+      //   darker: "#2d3748", // 800
+      //   dark: "#4a5568", // 700
+      //   default: "#a0aec0", // 500
+      //   light: "#cbd5e0", // 400
+      //   lighter: "#e2e8f0", // 300
+      //   lightest: "#edf2f7", // 200
+      // },
 
       gray: {
         100: "#f7fafc",

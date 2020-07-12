@@ -6,11 +6,14 @@ import { Button } from "components/shared/Button";
 import { useHistory } from "react-router-dom";
 import { pageConfig } from "pages";
 import { ConfirmRegistration } from "components/pages/register/ConfirmRegistration";
+import { IRegistrationForm } from "classes/fields/RegistrationFields";
 
 const RegisterPage: React.FC = (props) => {
   const history = useHistory();
 
-  const [email, setEmail] = React.useState<string>();
+  const [registrationFields, setRegistrationFields] = React.useState<
+    IRegistrationForm | undefined
+  >();
 
   const handleSignInClick = () => {
     history.push(pageConfig.signIn.path);
@@ -20,22 +23,21 @@ const RegisterPage: React.FC = (props) => {
     <div className={"flex flex-col flex-grow w-full justify-center px-2"}>
       <Card className={"max-w-lg mx-auto w-full shadow-xl"} topBorder>
         <div className={"flex items-center px-6 pt-4"}>
-          <UserSolidCircle
-            className={"fill-current text-green-500"}
-            size={24}
-          />
+          <UserSolidCircle className={"fill-current text-primary"} size={24} />
           <h2 className={"ml-2 text-xl text-gray-700 font-semibold"}>
-            {!email ? "Create Account" : "Confirm Email"}
+            {!registrationFields ? "Create Account" : "Confirm Email"}
           </h2>
         </div>
         <div className={"py-4 px-6"}>
-          {!email ? (
-            <RegistrationComponent setEmail={setEmail} />
+          {!registrationFields ? (
+            <RegistrationComponent
+              setRegistrationFields={setRegistrationFields}
+            />
           ) : (
-            <ConfirmRegistration email={email} />
+            <ConfirmRegistration registrationFields={registrationFields} />
           )}
         </div>
-        {!email && (
+        {!registrationFields && (
           <>
             <hr className={"mx-12"} />
             <div className={"flex items-center justify-center px-6 py-4"}>

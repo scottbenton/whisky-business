@@ -15,7 +15,7 @@ export const RecipeListItem: React.FC<RecipeListItemProps> = (props) => {
   return (
     <Card
       className={
-        "flex justify-center cursor-pointer my-4 transform transition-transform transition-shadow transition duration-300 ease-in-out hover:shadow-lg hover:-translate-y-1 sm:hover:scale-105 focus:shadow-outline focus:scale-100 focus:shadow-outline outline-none"
+        "flex justify-center cursor-pointer my-4 transform hover:shadow-lg hover:-translate-y-1 sm:hover:scale-105 focus:shadow-outline focus:scale-100 focus:shadow-outline outline-none transition-all ease-in-out duration-300"
       }
       component={"a"}
       tabIndex={0}

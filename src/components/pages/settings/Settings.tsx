@@ -90,7 +90,7 @@ export const Settings: React.FC = (props) => {
                   </Button>
                   <Button
                     id={"change-password"}
-                    variant={"primary"}
+                    variant={"contained"}
                     type={"submit"}
                   >
                     Change Password
@@ -107,19 +107,19 @@ export const Settings: React.FC = (props) => {
       >
         <>
           <div className={"flex flex-col"}>
-            <span className={"text-gray-700 text-sm font-bold"}>Email</span>
+            <span className={"text-gray-700 text-sm font-bold"}>
+              Email{" "}
+              <span className={"font-normal"}>(not currently editable)</span>
+            </span>
             <span className={"px-4 py-3 text-lg font-semibold"}>
               {user?.email}
             </span>
-            <span className={"text-sm text-gray-700"}>
-              *Email is not yet editable
-            </span>
           </div>
-          <div className={"pt-6"}>
+          <div className={"pt-6 flex flex-col"}>
             <span className={"text-gray-700 text-sm font-bold"}>Password</span>
             <Button
               id={"password-change"}
-              variant={"secondary"}
+              variant={"outlined"}
               onClick={() => setChangePassOpen(true)}
             >
               Change Password
@@ -160,7 +160,8 @@ export const Settings: React.FC = (props) => {
                 <Button
                   id={"save-changes"}
                   type={"submit"}
-                  variant={"secondary"}
+                  variant={"outlined"}
+                  color={"primary"}
                 >
                   Update Profile
                 </Button>

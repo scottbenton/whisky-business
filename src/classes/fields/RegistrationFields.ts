@@ -1,4 +1,4 @@
-import { passwordValidator } from "utils/validatorHelpers";
+import { passwordValidator, emailValidator } from "utils/validatorHelpers";
 
 export interface IRegistrationForm {
   firstName: string;
@@ -56,10 +56,7 @@ export class RegistrationForm implements IRegistrationForm {
   }
 
   validateEmail() {
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (!this.email || !re.test(this.email.toLowerCase())) {
-      return "Invalid Email";
-    }
+    return emailValidator(this.email);
   }
 
   validatePassword() {

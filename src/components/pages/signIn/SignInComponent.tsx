@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useAuth } from "providers/AuthProvider";
 import { Form } from "react-final-form";
 import { Alert } from "components/shared/Alert";
 import { TextFormField } from "components/shared/TextInput/TextFormField";
 import { Button } from "components/shared/Button";
 import { SignInForm, ISignInForm } from "classes/fields/SignInForm";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { pageConfig } from "pages";
 
 const validate = async (values: ISignInForm) => {
@@ -14,21 +14,25 @@ const validate = async (values: ISignInForm) => {
 };
 
 export const SignInComponent: React.FC = () => {
-  const { signIn } = useAuth();
+  const { signIn, user } = useAuth();
   const history = useHistory();
 
   const [error, setError] = React.useState<Error | undefined>();
 
-  const onSubmit = async (values: SignInForm) => {
+  useEffect(() => {
+    if (user) {
+      history.push(pageConfig.recipeList.path);
+    }
+  }, [user, history]);
+
+  const onSubmit = async (values: ISignInForm) => {
+    const formValues = new SignInForm(values);
     setError(undefined);
-    signIn(values)
-      .then(() => {
-        console.debug("Sign in worked");
-        history.push(pageConfig.recipeList.path);
-      })
-      .catch((err: Error) => {
-        setError(err);
-      });
+    try {
+      await signIn(formValues);
+    } catch (e) {
+      setError(e);
+    }
   };
 
   const handleCancel = () => {
@@ -43,7 +47,7 @@ export const SignInComponent: React.FC = () => {
       <Form
         onSubmit={onSubmit}
         validate={validate}
-        render={({ handleSubmit }) => (
+        render={({ handleSubmit, pristine, submitting }) => (
           <form onSubmit={handleSubmit} autoComplete={"no"}>
             <TextFormField
               fieldName={"email"}
@@ -59,11 +63,29 @@ export const SignInComponent: React.FC = () => {
               required={true}
               type={"password"}
             />
+            <Link
+              className={"text-primary-dark underline text-sm font-semibold"}
+              to={pageConfig.forgotPassword.path}
+            >
+              Forgot Password?
+            </Link>
             <div className={"flex justify-end mt-4 mb-2"}>
-              <Button id={"cancel"} type={"button"} onClick={handleCancel}>
+              <Button
+                id={"cancel"}
+                type={"button"}
+                onClick={handleCancel}
+                containerClassName={"mr-1"}
+              >
                 Cancel
               </Button>
-              <Button id={"sign-in"} type={"submit"} variant={"primary"}>
+              <Button
+                id={"sign-in"}
+                type={"submit"}
+                variant={"contained"}
+                color={"primary"}
+                disabled={submitting || pristine}
+                loading={submitting}
+              >
                 Sign In
               </Button>
             </div>

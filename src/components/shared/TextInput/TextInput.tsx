@@ -82,11 +82,11 @@ export const TextInput: React.FC<TextInputProps> = (props) => {
       <div className={"shadow rounded-lg w-full"}>
         <div
           className={clsx(
-            "overflow-hidden border-2 w-full rounded-lg flex",
+            "overflow-hidden border w-full rounded-lg flex",
             isFocused
               ? error
                 ? "border-red-600"
-                : "border-green-400"
+                : "border-primary"
               : error
               ? "border-red-400"
               : ""

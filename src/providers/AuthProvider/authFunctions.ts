@@ -4,6 +4,7 @@ import { ISignUpResult, CognitoUser } from "amazon-cognito-identity-js";
 import { SignInForm } from "classes/fields/SignInForm";
 import { PasswordFields } from "classes/fields/PasswordFields";
 import { UserAttributeFields } from "classes/fields/UserAttributeFields";
+import { ForgotPasswordFields } from "classes/fields/ForgotPasswordFields";
 
 export interface SignUpAttributes {
   user: CognitoUser;
@@ -60,8 +61,12 @@ export function signIn(fields: SignInForm): Promise<string> {
 export function signOut(): Promise<string> {
   return new Promise((resolve, reject) => {
     Auth.signOut()
-      .then(() => resolve("Success"))
-      .catch((e) => reject(e));
+      .then(() => {
+        resolve("Success");
+      })
+      .catch((e) => {
+        reject(e);
+      });
   });
 }
 
@@ -91,5 +96,38 @@ export function updateAttributes(fields: UserAttributeFields): Promise<string> {
     } catch (e) {
       reject(e);
     }
+  });
+}
+
+export function forgotPassword(email: string): Promise<string> {
+  return new Promise((resolve, reject) => {
+    Auth.forgotPassword(email)
+      .then(() => {
+        resolve("success");
+      })
+      .catch((e) => reject(e));
+  });
+}
+
+export function forgotPasswordSubmit(
+  fields: ForgotPasswordFields
+): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const { email, code, newPassword } = fields;
+
+    if (!code) {
+      reject(new Error("Code is required"));
+    }
+    if (!newPassword) {
+      reject(new Error("Password is required"));
+    }
+
+    Auth.forgotPasswordSubmit(email, code || "code", newPassword || "pass")
+      .then(() => {
+        resolve("Success");
+      })
+      .catch((e) => {
+        reject(e);
+      });
   });
 }

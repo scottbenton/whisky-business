@@ -5,12 +5,7 @@ const RecipePage = React.lazy(() => import("./RecipePage"));
 const RegisterPage = React.lazy(() => import("./RegisterPage"));
 const SignInPage = React.lazy(() => import("./SignInPage"));
 const HomePage = React.lazy(() => import("./HomePage"));
-
-// import { RecipeListPage } from "./RecipeListPage";
-// import { RecipePage } from "./RecipePage";
-// import { RegisterPage } from "./RegisterPage";
-// import { SignInPage } from "./SignInPage";
-// import { HomePage } from "./HomePage";
+const ForgotPasswordPage = React.lazy(() => import("./ForgotPasswordPage"));
 
 export interface PageConfigEntry {
   path: string;
@@ -42,6 +37,11 @@ export const pageConfig: PageConfig = {
     path: "/sign-in",
     exact: true,
     component: (props) => <SignInPage {...props} />,
+  },
+  forgotPassword: {
+    path: "/forgot-password",
+    exact: true,
+    component: (props) => <ForgotPasswordPage {...props} />,
   },
   home: {
     path: "/",

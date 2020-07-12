@@ -2,15 +2,16 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { pageConfig } from "pages";
 import { IconButton } from "components/shared/IconButton";
-import { CheveronDown } from "react-zondicons";
+import { Cog } from "react-zondicons";
 import { Button } from "components/shared/Button";
 import { useAuth } from "providers/AuthProvider";
 
 export const NavBar: React.FC = (props) => {
   const { user } = useAuth();
   const history = useHistory();
+
   return (
-    <div className={" px-8 py-6 gradient text-white shadow-xl"}>
+    <div className={" px-8 py-6 gradient text-primary-darker shadow-xl"}>
       <div
         className={
           "flex justify-between items-center max-w-screen-xl mx-auto w-full"
@@ -18,7 +19,7 @@ export const NavBar: React.FC = (props) => {
       >
         <Link
           className={
-            "text-center text-3xl font-title font-bold hover:underline"
+            "text-center text-3xl font-title font-bold hover:underline text-white text-shadow"
           }
           to={pageConfig.home.path}
         >
@@ -26,19 +27,32 @@ export const NavBar: React.FC = (props) => {
         </Link>
         {user ? (
           <IconButton
-            icon={CheveronDown}
-            tooltip={"Show More"}
-            variant={"secondary"}
+            icon={Cog}
+            tooltip={"Account Settings"}
             id={"more"}
+            color={"inherit"}
+            onClick={() => history.push(pageConfig.settings.path)}
           />
         ) : (
-          <Button
-            id={"log-in"}
-            variant={"secondary"}
-            onClick={() => history.push(pageConfig.signIn.path)}
+          <div
+            className={
+              "flex items-center text-primary-darkest border-primary-darkest"
+            }
           >
-            Log In
-          </Button>
+            <Button
+              id={"sign-in"}
+              onClick={() => history.push(pageConfig.signIn.path)}
+            >
+              Sign In
+            </Button>
+            <div className={"py-3 mx-1 border border-primary-dark"} />
+            <Button
+              id={"create-account"}
+              onClick={() => history.push(pageConfig.register.path)}
+            >
+              Create Account
+            </Button>
+          </div>
         )}
       </div>
     </div>

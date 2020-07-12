@@ -12,8 +12,11 @@ const signIn = jest.fn();
 }));
 signIn.mockResolvedValue({});
 
-jest.mock("react-router-dom", () => ({ useHistory: jest.fn() }));
-import { useHistory } from "react-router-dom";
+jest.mock("react-router-dom", () => ({
+  useHistory: jest.fn(),
+  Link: (props: any) => <> </>,
+}));
+import { useHistory, Link } from "react-router-dom";
 import { pageConfig } from "pages";
 import { RegistrationForm } from "classes/fields/RegistrationFields";
 import { TextInputProps } from "components/shared/TextInput";

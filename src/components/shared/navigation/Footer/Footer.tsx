@@ -15,13 +15,13 @@ export const Footer: React.FC = (props) => {
           Created by{" "}
           <a
             href={"https://scottbenton.dev"}
-            className={"text-green-700 underline font-semibold"}
+            className={"text-primary-dark underline font-semibold"}
           >
             Scott Benton
           </a>
         </span>
         {user && (
-          <Button id={"log-out"} variant={"tertiary"} onClick={() => signOut()}>
+          <Button id={"log-out"} variant={"text"} onClick={() => signOut()}>
             Log Out
           </Button>
         )}

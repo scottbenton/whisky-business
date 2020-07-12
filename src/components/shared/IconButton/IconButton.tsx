@@ -2,12 +2,13 @@ import React, { ButtonHTMLAttributes, Attributes, MouseEvent } from "react";
 import { usePopper } from "react-popper";
 import clsx from "clsx";
 import { useTransition, animated } from "react-spring";
+import Ripples from "react-ripples";
 
 export interface IconButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
   tooltip?: string;
   icon: React.FunctionComponent | React.ComponentClass | string;
-  variant?: "tertiary" | "secondary" | "primary";
+  color?: "primary" | "inherit";
   id: string;
 }
 
@@ -19,7 +20,7 @@ export const IconButton: React.FC<IconButtonProps> = (props) => {
     className,
     icon,
     onClick,
-    variant = "tertiary",
+    color = "inherit",
     ...buttonProps
   } = props;
 
@@ -45,26 +46,20 @@ export const IconButton: React.FC<IconButtonProps> = (props) => {
 
   let classes = clsx(
     className,
-    "h-12 w-12 rounded-full flex justify-center items-center focus:outline-none"
+    "h-12 w-12 rounded-full flex justify-center items-center focus:outline-none transition-all duration-300 ease-in-out"
   );
 
-  switch (variant) {
+  switch (color) {
     case "primary":
       classes = clsx(
         classes,
-        "bg-green-300 border-2 border-green-500 hover:bg-green-400 shadow-md text-green-900 shadow-md hover:shadow-2xl"
+        " border-2 border-transparent hover:bg-smoke-lightest text-primary-dark hover:shadow-lg focus:border-primary-darkest"
       );
       break;
-    case "secondary":
+    case "inherit":
       classes = clsx(
         classes,
-        "border-2 border-green-500 focus:border-green-700 text-green-700 hover:bg-opacity-50 hover:bg-green-300"
-      );
-      break;
-    case "tertiary":
-      classes = clsx(
-        classes,
-        "focus:border-gray-700 hover:bg-opacity-25 hover:bg-gray-900"
+        "border-2 border-transparent focus:border-primary-darkest hover:bg-smoke-lightest"
       );
       break;
   }
@@ -80,21 +75,28 @@ export const IconButton: React.FC<IconButtonProps> = (props) => {
 
   return (
     <>
-      <button
-        ref={setButtonElement}
-        id={descriptiveId}
-        data-testid={descriptiveId}
-        className={classes}
-        onMouseEnter={() => setShowTooltip(true)}
-        onMouseLeave={() => setShowTooltip(false)}
-        onClick={handleClick}
-        {...buttonProps}
+      <Ripples
+        during={500}
+        color={"rgba(0, 0, 0, .3)"}
+        className={"overflow-hidden rounded-full"}
       >
-        {React.createElement(icon, {
-          "data-testid": "icon",
-          className: "fill-current",
-        } as Attributes)}
-      </button>
+        <button
+          ref={setButtonElement}
+          id={descriptiveId}
+          data-testid={descriptiveId}
+          className={classes}
+          onMouseEnter={() => setShowTooltip(true)}
+          onMouseLeave={() => setShowTooltip(false)}
+          onClick={handleClick}
+          {...buttonProps}
+        >
+          {React.createElement(icon, {
+            "data-testid": "icon",
+            className: "fill-current",
+            size: 24,
+          } as Attributes)}
+        </button>
+      </Ripples>
       {transition.map(
         ({ item, props, key }) =>
           item &&

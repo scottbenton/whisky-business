@@ -34,7 +34,7 @@ export const Card: React.FC<CardProps> = (props) => {
     <Component
       className={clsx(
         "bg-white text-gray-900 shadow-md rounded-lg overflow-hidden",
-        topBorder && " border-t-4 border-green-400",
+        topBorder && " border-t-4 border-primary-light",
         className
       )}
       tabIndex={tabIndex}

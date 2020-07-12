@@ -10,7 +10,6 @@ import { Alert } from "components/shared/Alert";
 import { useAuth } from "providers/AuthProvider";
 import { useHistory } from "react-router-dom";
 import { pageConfig } from "pages";
-import { SignUpAttributes } from "providers/AuthProvider/authFunctions";
 
 const handleValidate = async (values: IRegistrationForm) => {
   let form = new RegistrationForm(values);
@@ -18,26 +17,28 @@ const handleValidate = async (values: IRegistrationForm) => {
 };
 
 export interface RegistrationComponentProps {
-  setEmail: (email: string) => void;
+  setRegistrationFields: (form: IRegistrationForm) => void;
 }
 
 export const RegistrationComponent: React.FC<RegistrationComponentProps> = (
   props
 ) => {
-  const { setEmail } = props;
+  const { setRegistrationFields } = props;
 
   const { signUp } = useAuth();
   const history = useHistory();
 
   const [error, setError] = React.useState<Error | undefined>();
 
-  const onSubmit = (values: RegistrationForm) => {
+  const onSubmit = async (values: IRegistrationForm) => {
+    const formValues = new RegistrationForm(values);
     setError(undefined);
-    signUp(values)
-      .then((result: SignUpAttributes) => {
-        setEmail(result.user.getUsername());
-      })
-      .catch((err: Error) => setError(err));
+    try {
+      await signUp(formValues);
+      setRegistrationFields(values);
+    } catch (e) {
+      setError(e);
+    }
   };
 
   const handleCancel = () => {
@@ -52,7 +53,7 @@ export const RegistrationComponent: React.FC<RegistrationComponentProps> = (
       <Form
         onSubmit={onSubmit}
         validate={handleValidate}
-        render={({ handleSubmit }) => (
+        render={({ handleSubmit, pristine, submitting }) => (
           <form
             onSubmit={handleSubmit}
             autoComplete={"no"}
@@ -100,10 +101,23 @@ export const RegistrationComponent: React.FC<RegistrationComponentProps> = (
               type={"password"}
             />
             <div className={"flex justify-end mt-4 mb-2"}>
-              <Button id={"cancel"} type={"button"} onClick={handleCancel}>
+              <Button
+                id={"cancel"}
+                type={"button"}
+                onClick={handleCancel}
+                containerClassName={"mr-1"}
+                disabled={submitting}
+              >
                 Cancel
               </Button>
-              <Button id={"create-account"} type={"submit"} variant={"primary"}>
+              <Button
+                id={"create-account"}
+                type={"submit"}
+                variant={"contained"}
+                color={"primary"}
+                disabled={pristine || submitting}
+                loading={submitting}
+              >
                 Create Account
               </Button>
             </div>

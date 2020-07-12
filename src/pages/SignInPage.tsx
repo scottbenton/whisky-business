@@ -17,10 +17,7 @@ const SignInPage: React.FC = (props) => {
     <div className={"flex flex-col flex-grow w-full justify-center px-2"}>
       <Card className={"max-w-lg mx-auto w-full shadow-xl"} topBorder>
         <div className={"flex items-center px-6 py-4"}>
-          <UserSolidCircle
-            className={"fill-current text-green-500"}
-            size={24}
-          />
+          <UserSolidCircle className={"fill-current text-primary"} size={24} />
           <h2 className={"ml-2 text-2xl text-gray-700 font-semibold"}>
             Sign In
           </h2>

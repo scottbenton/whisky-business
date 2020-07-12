@@ -1,8 +1,8 @@
-@tailwind base;
-
-@tailwind components;
-
-@tailwind utilities;
+@import "./components.css";
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "./utilities.css";
+@import "tailwindcss/utilities";
 
 html,
 body,
@@ -12,14 +12,4 @@ body,
 
 #root {
   @apply flex flex-col overflow-auto bg-gray-200;
-}
-
-.gradient {
-  background: #11998e; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #11998e,
-    #38ef7d
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #11998e, #38ef7d);
 }

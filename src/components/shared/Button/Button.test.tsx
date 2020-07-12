@@ -22,18 +22,4 @@ describe("Button Tests", () => {
 
     expect(onClick).toHaveBeenCalledTimes(1);
   });
-
-  test("It changes the background and text colors when the primary variant is passed", () => {
-    const { getByTestId } = setup({ id: "test", variant: "primary" });
-    const button = getByTestId("test-button");
-    expect(button).toHaveClass("bg-green-300");
-    expect(button).toHaveClass("text-green-900");
-  });
-
-  test("It changes the outline and text colors when the secondary variant is passed", () => {
-    const { getByTestId } = setup({ id: "test", variant: "secondary" });
-    const button = getByTestId("test-button");
-    expect(button).toHaveClass("text-green-700");
-    expect(button).toHaveClass("border-green-500");
-  });
 });

@@ -7,8 +7,10 @@ jest.mock("providers/AuthProvider", () => ({
 }));
 import { useAuth } from "providers/AuthProvider";
 const confirmCode = jest.fn();
+const signIn = jest.fn();
 (useAuth as jest.Mock).mockImplementation(() => ({
   confirmCode: confirmCode,
+  signIn: signIn,
 }));
 confirmCode.mockResolvedValue({});
 
@@ -38,7 +40,19 @@ afterEach(cleanup);
 
 describe("TextInput Tests", () => {
   const setup = () => {
-    return render(<ConfirmRegistration email={"test@test.com"} />);
+    return render(
+      <ConfirmRegistration
+        registrationFields={
+          new RegistrationForm({
+            firstName: "Test",
+            lastName: "User",
+            email: "test@test.com",
+            password: "1234Abcd",
+            confirmPassword: "1234Abcd",
+          })
+        }
+      />
+    );
   };
 
   test("It has an input for the code", () => {
@@ -66,6 +80,11 @@ describe("TextInput Tests", () => {
       () => {
         expect(confirmCode).toHaveBeenCalledTimes(1);
         expect(confirmCode).toHaveBeenCalledWith("test@test.com", "123456");
+        expect(signIn).toHaveBeenCalledTimes(1);
+        expect(signIn).toHaveBeenCalledWith({
+          email: "test@test.com",
+          password: "1234Abcd",
+        });
       },
       { timeout: 50 }
     );
