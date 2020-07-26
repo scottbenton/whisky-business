@@ -796,11 +796,6 @@ video {
   text-shadow: 0px 0px 2px #000;
 }
 
-.gradient {
-  background: #11998e; /* fallback for old browsers */ /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #11998e, #38ef7d);
-}
-
 .space-y-0 > :not(template) ~ :not(template) {
   --space-y-reverse: 0;
   margin-top: calc(0px * calc(1 - var(--space-y-reverse)));

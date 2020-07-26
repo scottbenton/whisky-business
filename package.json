@@ -23,6 +23,7 @@
     "react-scripts": "3.4.1",
     "react-spring": "^8.0.27",
     "react-zondicons": "^1.1.9",
+    "typeface-comfortaa": "^1.1.4",
     "typeface-dosis": "^1.1.4",
     "typeface-montserrat": "0.0.75",
     "typescript": "^3.7.5"
