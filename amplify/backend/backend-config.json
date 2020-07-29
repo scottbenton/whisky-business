@@ -1,9 +1,0 @@
-{
-	"auth": {
-		"whiskybusinessui39d972c5": {
-			"service": "Cognito",
-			"providerPlugin": "awscloudformation",
-			"dependsOn": []
-		}
-	}
-}
