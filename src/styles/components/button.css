@@ -9,7 +9,7 @@
 }
 
 .btn {
-  @apply box-border flex items-center px-4 py-2 overflow-hidden text-sm font-bold tracking-wider uppercase border-2 border-transparent rounded-lg;
+  @apply box-border flex items-center px-4 py-2 overflow-hidden text-sm font-semibold tracking-wider uppercase border-2 border-transparent rounded-lg;
 }
 
 .btn:focus {
