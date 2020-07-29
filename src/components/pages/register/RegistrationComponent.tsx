@@ -69,7 +69,6 @@ export const RegistrationComponent: React.FC<RegistrationComponentProps> = (
               <TextInputFormField
                 fieldName={"firstName"}
                 id="first-name"
-                placeholder={"Scott"}
                 label={"First Name"}
                 required={true}
                 className={"mr-2"}
@@ -77,7 +76,6 @@ export const RegistrationComponent: React.FC<RegistrationComponentProps> = (
               <TextInputFormField
                 fieldName={"lastName"}
                 id="last-name"
-                placeholder={"Benton"}
                 label={"Last Name"}
                 required={true}
                 className={"ml-2"}
@@ -86,7 +84,6 @@ export const RegistrationComponent: React.FC<RegistrationComponentProps> = (
             <TextInputFormField
               fieldName={"email"}
               id="email"
-              placeholder={"scott@scottbenton.dev"}
               label={"Email Address"}
               required={true}
               helperText={"Your email will be used to log you in in the future"}

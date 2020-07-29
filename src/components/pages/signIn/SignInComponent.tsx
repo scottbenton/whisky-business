@@ -52,7 +52,6 @@ export const SignInComponent: React.FC = () => {
             <TextInputFormField
               fieldName={"email"}
               id="email"
-              placeholder={"scott@scottbenton.dev"}
               label={"Email Address"}
               required={true}
             />
