@@ -4,7 +4,7 @@ import {
   IUserAttributeFields,
   UserAttributeFields,
 } from "classes/fields/UserAttributeFields";
-import { TextFormField } from "components/shared/TextInput/TextFormField";
+import { TextInputFormField } from "components/shared/TextInput/TextInputFormField";
 import { useAuth } from "providers/AuthProvider";
 import { Button } from "components/shared/Button";
 import { FormSection } from "components/shared/FormSection";
@@ -13,6 +13,7 @@ import { IPasswordFields, PasswordFields } from "classes/fields/PasswordFields";
 import { Alert } from "components/shared/Alert";
 import { useHistory } from "react-router-dom";
 import { pageConfig } from "pages";
+import { InputLabel } from "components/shared/TextInput";
 
 const handleAttributeValidate = async (fields: IUserAttributeFields) => {
   const attributes = new UserAttributeFields(fields);
@@ -79,13 +80,13 @@ export const Settings: React.FC = (props) => {
           render={({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
               <div className={"flex flex-col mt-4"}>
-                <TextFormField
+                <TextInputFormField
                   id={"old-password"}
                   label={"Current Password"}
                   fieldName={"oldPassword"}
                   type={"password"}
                 />
-                <TextFormField
+                <TextInputFormField
                   id={"new-password"}
                   label={"New Password"}
                   fieldName={"newPassword"}
@@ -102,6 +103,7 @@ export const Settings: React.FC = (props) => {
                     id={"change-password"}
                     variant={"contained"}
                     type={"submit"}
+                    color={"primary"}
                   >
                     Change Password
                   </Button>
@@ -117,16 +119,18 @@ export const Settings: React.FC = (props) => {
       >
         <>
           <div className={"flex flex-col"}>
-            <span className={"text-gray-700 text-sm font-bold"}>
-              Email{" "}
-              <span className={"font-normal"}>(not currently editable)</span>
-            </span>
+            <InputLabel className={"mt-2"}>
+              Email
+              <span className={"font-normal ml-2"}>
+                (not currently editable)
+              </span>
+            </InputLabel>
             <span className={"px-4 py-3 text-lg font-semibold"}>
               {user?.email}
             </span>
           </div>
           <div className={"pt-6 flex flex-col"}>
-            <span className={"text-gray-700 text-sm font-bold"}>Password</span>
+            <InputLabel>Password</InputLabel>
             <Button
               id={"password-change"}
               variant={"outlined"}
@@ -162,13 +166,13 @@ export const Settings: React.FC = (props) => {
           validate={handleAttributeValidate}
           render={({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
-              <TextFormField
+              <TextInputFormField
                 id={"first-name"}
                 label="First Name"
                 fieldName={"firstName"}
                 required
               />
-              <TextFormField
+              <TextInputFormField
                 id={"last-name"}
                 label={"Last Name"}
                 fieldName={"lastName"}

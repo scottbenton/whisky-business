@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from "react";
-import { SettingsPage } from "./SettingsPage";
+const SettingsPage = React.lazy(() => import("./SettingsPage"));
+const CreateRecipePage = React.lazy(() => import("./CreateRecipePage"));
 const RecipeListPage = React.lazy(() => import("./RecipeListPage"));
 const RecipePage = React.lazy(() => import("./RecipePage"));
 const RegisterPage = React.lazy(() => import("./RegisterPage"));
@@ -9,8 +10,12 @@ const ForgotPasswordPage = React.lazy(() => import("./ForgotPasswordPage"));
 
 export interface PageConfigEntry {
   path: string;
-  exact: true;
+  exact: boolean;
   component: FunctionComponent;
+  label?: string;
+  icon?: React.ReactNode;
+  hideWhenAuthenticated?: boolean;
+  hideWhenUnauthenticated?: boolean;
 }
 
 export interface PageConfig {
@@ -26,17 +31,23 @@ export const pageConfig: PageConfig = {
   recipeList: {
     path: "/recipes",
     exact: true,
+    label: "Recipes",
+    hideWhenUnauthenticated: true,
     component: (props) => <RecipeListPage {...props} />,
-  },
-  register: {
-    path: "/sign-up",
-    exact: true,
-    component: (props) => <RegisterPage {...props} />,
   },
   signIn: {
     path: "/sign-in",
     exact: true,
+    label: "Sign In",
+    hideWhenAuthenticated: true,
     component: (props) => <SignInPage {...props} />,
+  },
+  register: {
+    path: "/create-account",
+    exact: true,
+    label: "Create Account",
+    hideWhenAuthenticated: true,
+    component: (props) => <RegisterPage {...props} />,
   },
   forgotPassword: {
     path: "/forgot-password",
@@ -51,6 +62,13 @@ export const pageConfig: PageConfig = {
   settings: {
     path: "/settings",
     exact: true,
+    hideWhenUnauthenticated: true,
+    label: "Account",
     component: (props) => <SettingsPage {...props} />,
+  },
+  createRecipe: {
+    path: "/new",
+    exact: true,
+    component: (props) => <CreateRecipePage {...props} />,
   },
 };

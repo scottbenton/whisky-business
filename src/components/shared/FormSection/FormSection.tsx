@@ -24,7 +24,7 @@ export const FormSection: React.FC<FormSectionProps> = (props) => {
             <span className={"text-gray-700 py-2"}>{description}</span>
           )}
         </div>
-        <div className={"w-full md:w-2/3 pt-4 md:pl-1"}>{children}</div>
+        <div className={"w-full md:w-2/3 md:pl-1"}>{children}</div>
       </div>
     </div>
   );

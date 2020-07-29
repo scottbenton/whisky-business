@@ -7,6 +7,7 @@ import AppProviders from "providers/AppProviders";
 
 import "typeface-dosis";
 import "typeface-montserrat";
+import "typeface-comfortaa";
 
 import Amplify from "aws-amplify";
 import aws_exports from "aws-exports";

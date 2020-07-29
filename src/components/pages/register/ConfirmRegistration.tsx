@@ -1,6 +1,6 @@
 import React from "react";
 import { Form } from "react-final-form";
-import { TextFormField } from "components/shared/TextInput/TextFormField";
+import { TextInputFormField } from "components/shared/TextInput/TextInputFormField";
 import { Button } from "components/shared/Button";
 import { useAuth } from "providers/AuthProvider";
 import { Alert } from "components/shared/Alert";
@@ -47,7 +47,7 @@ export const ConfirmRegistration: React.FC<ConfirmRegistrationProps> = (
         onSubmit={handleSubmit}
         component={({ handleSubmit, submitting, pristine }) => (
           <form onSubmit={handleSubmit}>
-            <TextFormField label={"Code"} id={"code"} fieldName={"code"} />
+            <TextInputFormField label={"Code"} id={"code"} fieldName={"code"} />
             <div className={"flex justify-end"}>
               <Button
                 type={"submit"}

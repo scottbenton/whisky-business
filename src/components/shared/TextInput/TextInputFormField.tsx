@@ -2,11 +2,13 @@ import React from "react";
 import { Field } from "react-final-form";
 import { TextInput, TextInputProps } from "./TextInput";
 
-export interface TextFormFieldProps extends TextInputProps {
+export interface TextInputFormFieldProps extends TextInputProps {
   fieldName: string;
 }
 
-export const TextFormField: React.FC<TextFormFieldProps> = (props) => {
+export const TextInputFormField: React.FC<TextInputFormFieldProps> = (
+  props
+) => {
   const { fieldName, helperText, ...otherProps } = props;
   return (
     <Field

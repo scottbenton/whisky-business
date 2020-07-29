@@ -1,60 +1,51 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { pageConfig } from "pages";
-import { IconButton } from "components/shared/IconButton";
-import { Cog } from "react-zondicons";
-import { Button } from "components/shared/Button";
 import { useAuth } from "providers/AuthProvider";
+import { NavLink } from "./NavLink";
+import WhiskLogoImage from "resources/WhiskLogo64.png";
 
 export const NavBar: React.FC = (props) => {
   const { user } = useAuth();
-  const history = useHistory();
+
+  const navItems = Object.values(pageConfig).filter(
+    (page) =>
+      page.label &&
+      (user ? !page.hideWhenAuthenticated : !page.hideWhenUnauthenticated)
+  );
 
   return (
-    <div className={" px-8 py-6 gradient text-primary-darker shadow-xl"}>
-      <div
-        className={
-          "flex justify-between items-center max-w-screen-xl mx-auto w-full"
-        }
-      >
-        <Link
+    <>
+      <div className={"px-2 bg-white text-gray-900 shadow-xl"}>
+        {/* <div className={"px-2 py-3 text-gray-900 flex justify-between items-center max-w-screen-xl mx-auto w-full"}> */}
+        <div
           className={
-            "text-center text-3xl font-title font-bold hover:underline text-white text-shadow"
+            "flex justify-between items-center max-w-screen-xl mx-auto w-full h-full"
           }
-          to={pageConfig.home.path}
         >
-          Whisky Business
-        </Link>
-        {user ? (
-          <IconButton
-            icon={Cog}
-            tooltip={"Account Settings"}
-            id={"more"}
-            color={"inherit"}
-            onClick={() => history.push(pageConfig.settings.path)}
-          />
-        ) : (
-          <div
+          <Link
             className={
-              "flex items-center text-primary-darkest border-primary-darkest"
+              "text-center text-primary-dark text-xl stroke-2 tracking-tighter font-title hover:underline px-2 flex items-center focus:outline-none focus:underline"
             }
+            to={pageConfig.home.path}
           >
-            <Button
-              id={"sign-in"}
-              onClick={() => history.push(pageConfig.signIn.path)}
-            >
-              Sign In
-            </Button>
-            <div className={"py-3 mx-1 border border-primary-dark"} />
-            <Button
-              id={"create-account"}
-              onClick={() => history.push(pageConfig.register.path)}
-            >
-              Create Account
-            </Button>
+            <img
+              src={WhiskLogoImage}
+              alt={"Whisky Business Logo"}
+              className={"w-6 h-6"}
+            />
+            {/* <WhiskLogo className={"stroke-current text-primary w-6 h-6"} /> */}
+            <span className={"ml-2 lowercase"}>Whisky Business</span>
+          </Link>
+          <div className={"flex h-full"}>
+            {navItems.map((navItem) => (
+              <NavLink key={navItem.label} path={navItem.path}>
+                {navItem.label}
+              </NavLink>
+            ))}
           </div>
-        )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };

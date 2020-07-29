@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useAuth } from "providers/AuthProvider";
 import { Form } from "react-final-form";
 import { Alert } from "components/shared/Alert";
-import { TextFormField } from "components/shared/TextInput/TextFormField";
+import { TextInputFormField } from "components/shared/TextInput/TextInputFormField";
 import { Button } from "components/shared/Button";
 import { SignInForm, ISignInForm } from "classes/fields/SignInForm";
 import { useHistory, Link } from "react-router-dom";
@@ -49,14 +49,14 @@ export const SignInComponent: React.FC = () => {
         validate={validate}
         render={({ handleSubmit, pristine, submitting }) => (
           <form onSubmit={handleSubmit} autoComplete={"no"}>
-            <TextFormField
+            <TextInputFormField
               fieldName={"email"}
               id="email"
               placeholder={"scott@scottbenton.dev"}
               label={"Email Address"}
               required={true}
             />
-            <TextFormField
+            <TextInputFormField
               fieldName={"password"}
               id="password"
               label={"Password"}

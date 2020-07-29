@@ -14,7 +14,7 @@ export const InputAdornment: React.FC<InputAdornmentProps> = (props) => {
 
   const classes = clsx(
     className,
-    "px-3 h-full bg-gray-200 focus:outline-none text-gray-700 fill-current",
+    "px-3 h-full bg-gray-200 focus:outline-none text-gray-700 fill-current flex items-center",
     side === "start" ? "pl-4" : "pr-4"
   );
 
