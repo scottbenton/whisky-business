@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from "react";
-import { SettingsPage } from "./SettingsPage";
+const SettingsPage = React.lazy(() => import("./SettingsPage"));
+const CreateRecipePage = React.lazy(() => import("./CreateRecipePage"));
 const RecipeListPage = React.lazy(() => import("./RecipeListPage"));
 const RecipePage = React.lazy(() => import("./RecipePage"));
 const RegisterPage = React.lazy(() => import("./RegisterPage"));
@@ -64,5 +65,10 @@ export const pageConfig: PageConfig = {
     hideWhenUnauthenticated: true,
     label: "Account",
     component: (props) => <SettingsPage {...props} />,
+  },
+  createRecipe: {
+    path: "/new",
+    exact: true,
+    component: (props) => <CreateRecipePage {...props} />,
   },
 };

@@ -48,15 +48,19 @@ export const RecipeListItem: React.FC<RecipeListItemProps> = (props) => {
       </div>
       <div className={"w-2/3 px-4 min-h-full max-h-full py-2 flex flex-col"}>
         <div className={"flex-grow"}>
-          <span className={"text-2xl font-semibold"}>{name}</span>
-          <p className={"overflow-hidden hidden sm:block"}>{description}</p>
+          <span className={"font-semibold"}>{name}</span>
+          <p className={"overflow-hidden hidden text-sm sm:block"}>
+            {description}
+          </p>
         </div>
         <div className={"flex justify-between"}>
           <div className={"flex items-center"}>
             {time && (
               <>
-                <Timer className={"text-gray-700 fill-current"} />
-                <span className={"ml-2 text-lg"}>{formatCookTime(time)}</span>
+                <Timer className={"text-gray-700 fill-current w-4 h-4"} />
+                <span className={"ml-2 text-sm text-gray-700 font-semibold"}>
+                  {formatCookTime(time)}
+                </span>
               </>
             )}
           </div>

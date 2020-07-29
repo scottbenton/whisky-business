@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import { pageConfig } from "pages";
 import { useAuth } from "providers/AuthProvider";
 import { NavLink } from "./NavLink";
-
-import { ReactComponent as WhiskLogo } from "resources/WhiskLogo.svg";
+import WhiskLogoImage from "resources/WhiskLogo64.png";
 
 export const NavBar: React.FC = (props) => {
   const { user } = useAuth();
@@ -26,12 +25,17 @@ export const NavBar: React.FC = (props) => {
         >
           <Link
             className={
-              "text-center text-primary-dark text-3xl font-title font-bold hover:underline px-2 flex items-center"
+              "text-center text-primary-dark text-xl stroke-2 tracking-tighter font-title hover:underline px-2 flex items-center focus:outline-none focus:underline"
             }
             to={pageConfig.home.path}
           >
-            <WhiskLogo className={"stroke-current text-primary w-8 h-8"} />
-            <span className={"ml-2"}>Whisky Business</span>
+            <img
+              src={WhiskLogoImage}
+              alt={"Whisky Business Logo"}
+              className={"w-6 h-6"}
+            />
+            {/* <WhiskLogo className={"stroke-current text-primary w-6 h-6"} /> */}
+            <span className={"ml-2 lowercase"}>Whisky Business</span>
           </Link>
           <div className={"flex h-full"}>
             {navItems.map((navItem) => (

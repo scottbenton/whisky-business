@@ -4,7 +4,7 @@ import {
   IForgotPasswordFields,
 } from "classes/fields/ForgotPasswordFields";
 import { Form } from "react-final-form";
-import { TextFormField } from "components/shared/TextInput/TextFormField";
+import { TextInputFormField } from "components/shared/TextInput/TextInputFormField";
 import { Button } from "components/shared/Button";
 import { emailValidator } from "utils/validatorHelpers";
 import { useAuth } from "providers/AuthProvider";
@@ -77,7 +77,7 @@ export const ForgotPassword: React.FC = () => {
           validate={validateEmail}
           render={({ handleSubmit, pristine, submitting }) => (
             <form onSubmit={handleSubmit}>
-              <TextFormField
+              <TextInputFormField
                 fieldName={"email"}
                 id={"email"}
                 label={"Email"}
@@ -112,8 +112,12 @@ export const ForgotPassword: React.FC = () => {
           validate={validate}
           render={({ handleSubmit, submitting, pristine }) => (
             <form onSubmit={handleSubmit}>
-              <TextFormField id={"code"} fieldName={"code"} label={"Code"} />
-              <TextFormField
+              <TextInputFormField
+                id={"code"}
+                fieldName={"code"}
+                label={"Code"}
+              />
+              <TextInputFormField
                 type={"password"}
                 id={"new-password"}
                 fieldName={"newPassword"}

@@ -5,7 +5,7 @@ import {
   RegistrationForm,
   IRegistrationForm,
 } from "classes/fields/RegistrationFields";
-import { TextFormField } from "components/shared/TextInput/TextFormField";
+import { TextInputFormField } from "components/shared/TextInput/TextInputFormField";
 import { Alert } from "components/shared/Alert";
 import { useAuth } from "providers/AuthProvider";
 import { useHistory } from "react-router-dom";
@@ -66,7 +66,7 @@ export const RegistrationComponent: React.FC<RegistrationComponentProps> = (
             data-testid={"registration-form"}
           >
             <div className={"flex"}>
-              <TextFormField
+              <TextInputFormField
                 fieldName={"firstName"}
                 id="first-name"
                 placeholder={"Scott"}
@@ -74,7 +74,7 @@ export const RegistrationComponent: React.FC<RegistrationComponentProps> = (
                 required={true}
                 className={"mr-2"}
               />
-              <TextFormField
+              <TextInputFormField
                 fieldName={"lastName"}
                 id="last-name"
                 placeholder={"Benton"}
@@ -83,7 +83,7 @@ export const RegistrationComponent: React.FC<RegistrationComponentProps> = (
                 className={"ml-2"}
               />
             </div>
-            <TextFormField
+            <TextInputFormField
               fieldName={"email"}
               id="email"
               placeholder={"scott@scottbenton.dev"}
@@ -91,7 +91,7 @@ export const RegistrationComponent: React.FC<RegistrationComponentProps> = (
               required={true}
               helperText={"Your email will be used to log you in in the future"}
             />
-            <TextFormField
+            <TextInputFormField
               fieldName={"password"}
               id="password"
               label={"Password"}
@@ -99,7 +99,7 @@ export const RegistrationComponent: React.FC<RegistrationComponentProps> = (
               type={"password"}
               helperText={"Password must include letters & numbers"}
             />
-            <TextFormField
+            <TextInputFormField
               fieldName={"confirmPassword"}
               id="password-confirm"
               label={"Confirm Password"}

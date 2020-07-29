@@ -295,7 +295,7 @@ module.exports = {
       default: "1",
     },
     fontFamily: {
-      title: ["dosis", "serif"],
+      title: ["comfortaa", "serif"],
       sans: [
         "Montserrat",
         "system-ui",
