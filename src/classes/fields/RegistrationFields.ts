@@ -5,7 +5,6 @@ export interface IRegistrationForm {
   lastName: string;
   email: string;
   password: string;
-  confirmPassword: string;
 }
 
 export interface RegistrationErrors {
@@ -13,7 +12,6 @@ export interface RegistrationErrors {
   lastName?: string;
   email?: string;
   password?: string;
-  confirmPassword?: string;
 }
 
 export class RegistrationForm implements IRegistrationForm {
@@ -21,14 +19,12 @@ export class RegistrationForm implements IRegistrationForm {
   public lastName: string = "";
   public email: string = "";
   public password: string = "";
-  public confirmPassword: string = "";
 
   constructor(dto: IRegistrationForm) {
     this.firstName = dto.firstName;
     this.lastName = dto.lastName;
     this.email = dto.email;
     this.password = dto.password;
-    this.confirmPassword = dto.confirmPassword;
   }
 
   validate() {
@@ -38,7 +34,6 @@ export class RegistrationForm implements IRegistrationForm {
     errors.lastName = this.validateLastName();
     errors.email = this.validateEmail();
     errors.password = this.validatePassword();
-    errors.confirmPassword = this.validateConfirmPassword();
 
     return errors;
   }
@@ -61,15 +56,5 @@ export class RegistrationForm implements IRegistrationForm {
 
   validatePassword() {
     return passwordValidator(this.password);
-  }
-
-  validateConfirmPassword() {
-    if (
-      !this.confirmPassword ||
-      !this.password ||
-      this.confirmPassword !== this.password
-    ) {
-      return "Passwords must match";
-    }
   }
 }

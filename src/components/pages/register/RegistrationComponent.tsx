@@ -96,13 +96,6 @@ export const RegistrationComponent: React.FC<RegistrationComponentProps> = (
               type={"password"}
               helperText={"Password must include letters & numbers"}
             />
-            <TextInputFormField
-              fieldName={"confirmPassword"}
-              id="password-confirm"
-              label={"Confirm Password"}
-              required={true}
-              type={"password"}
-            />
             <div className={"flex justify-end mt-4 mb-2"}>
               <Button
                 id={"cancel"}
